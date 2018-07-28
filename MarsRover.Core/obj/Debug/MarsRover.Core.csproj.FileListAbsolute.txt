@@ -1,0 +1,7 @@
+C:\Users\dawso\iCloudDrive\Documents\DealerOn\MarsRover\MarsRover.Core\bin\Debug\MarsRover.Core.dll
+C:\Users\dawso\iCloudDrive\Documents\DealerOn\MarsRover\MarsRover.Core\bin\Debug\MarsRover.Core.pdb
+C:\Users\dawso\iCloudDrive\Documents\DealerOn\MarsRover\MarsRover.Core\obj\Debug\MarsRover.Core.csprojAssemblyReference.cache
+C:\Users\dawso\iCloudDrive\Documents\DealerOn\MarsRover\MarsRover.Core\obj\Debug\MarsRover.Core.csproj.CoreCompileInputs.cache
+C:\Users\dawso\iCloudDrive\Documents\DealerOn\MarsRover\MarsRover.Core\obj\Debug\MarsRover.Core.dll
+C:\Users\dawso\iCloudDrive\Documents\DealerOn\MarsRover\MarsRover.Core\obj\Debug\MarsRover.Core.pdb
+C:\Users\dawso\iCloudDrive\Documents\DealerOn\MarsRover\MarsRover.Core\bin\Debug\MarsRover.Core.xml

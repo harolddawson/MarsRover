@@ -1,0 +1,224 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>MarsRover.Core</name>
+    </assembly>
+    <members>
+        <member name="T:HaroldDawson.MarsRover.Core.Enums.RoverCardinalDirectionEnum">
+            <summary>
+            This enum represents the directions that the NasaMarsRover can face.
+            </summary>
+        </member>
+        <member name="T:HaroldDawson.MarsRover.Core.Enums.RoverInstructionEnum">
+            <summary>
+            Represents the instructions that the NasaMarsRover understands.
+            </summary>
+        </member>
+        <member name="T:HaroldDawson.MarsRover.Core.Exceptions.MarsPlateauOutOfBoundsException">
+            <inheritdoc />
+            <summary>
+            This exception is to be thrown when a coordinate or a rover is to be found outside of the bounds of the plateau.
+            </summary>
+        </member>
+        <member name="T:HaroldDawson.MarsRover.Core.Exceptions.MarsRoverInputParseException">
+            <summary>
+            This exception class allows the InputParseService to decipher a parsing exception from another exception
+            so that only the exception that are expected get consumed and anything outside if its scope bubbles out to the caller.
+            </summary>
+        </member>
+        <member name="M:HaroldDawson.MarsRover.Core.Extensions.RoverExtensions.ConvertCharInputToInstructionEnum(System.Char)">
+            <summary>
+            Takes a single character and will convert it into a <see cref="T:HaroldDawson.MarsRover.Core.Enums.RoverInstructionEnum"/>.
+            </summary>
+            <param name="instructionChar"></param>
+            <returns>The resulting enum that matches the char provided</returns>
+            <exception cref="T:HaroldDawson.MarsRover.Core.Exceptions.MarsRoverInputParseException">Thrown if the character provided is not within the range of parsable values.</exception>
+        </member>
+        <member name="M:HaroldDawson.MarsRover.Core.Extensions.RoverExtensions.ConvertCharInputToCardinalDirectionEnum(System.Char)">
+            <summary>
+            Takes a single character and will convert it into a <see cref="T:HaroldDawson.MarsRover.Core.Enums.RoverCardinalDirectionEnum"/>.
+            </summary>
+            <param name="instructionChar"></param>
+            <returns>The resulting enum that matches the char provided</returns>
+            <exception cref="T:HaroldDawson.MarsRover.Core.Exceptions.MarsRoverInputParseException">Thrown if the character provided is not within the range of parsable values.</exception>
+        </member>
+        <member name="M:HaroldDawson.MarsRover.Core.Extensions.RoverExtensions.ConvertCardinalDirectionToChar(HaroldDawson.MarsRover.Core.Enums.RoverCardinalDirectionEnum)">
+            <summary>
+            Converts the <see cref="T:HaroldDawson.MarsRover.Core.Enums.RoverCardinalDirectionEnum"/> into a single char for text output.
+            This method gets the first char of the ToString() and returns it.
+            </summary>
+            <param name="directionEnum"></param>
+            <returns></returns>
+        </member>
+        <member name="T:HaroldDawson.MarsRover.Core.Models.InputParseResult`1">
+            <summary>
+            Represents the result from the InputParseService.
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="P:HaroldDawson.MarsRover.Core.Models.InputParseResult`1.IsResultParsedSuccessfully">
+            <summary>
+            Tells if the result was able to be parsed successfully.
+            </summary>
+        </member>
+        <member name="P:HaroldDawson.MarsRover.Core.Models.InputParseResult`1.Results">
+            <summary>
+            The object parsed by the InputParseService.
+            If the parsing was unsuccessful, this object will be the default value of T.
+            </summary>
+        </member>
+        <member name="P:HaroldDawson.MarsRover.Core.Models.InputParseResult`1.ParsingException">
+            <summary>
+            The exception thrown by the InputParseService, if parsing was not successful.
+            If the parsing was successful, this exception will be null.
+            </summary>
+        </member>
+        <member name="T:HaroldDawson.MarsRover.Core.Models.MarsPlateau">
+            <summary>
+            This class represents the rectangular Mars plateau.
+            </summary>
+        </member>
+        <member name="M:HaroldDawson.MarsRover.Core.Models.MarsPlateau.IsPointWithinPlateauBounds(HaroldDawson.MarsRover.Core.Models.MarsCoordinate)">
+            <summary>
+            Checks and returns true or false based on if the coordinate provided falls within the bounds of the plateau, with the boundaries themselves being inclusive.
+            </summary>
+            <param name="coordinate"></param>
+            <returns></returns>
+        </member>
+        <member name="T:HaroldDawson.MarsRover.Core.Models.NasaMarsRover">
+            <summary>
+            This class represents the NASA Mars Rover.
+            </summary>
+        </member>
+        <member name="P:HaroldDawson.MarsRover.Core.Models.NasaMarsRover.CurrentLocation">
+            <summary>
+            The rover's current X Y coordinate
+            </summary>
+        </member>
+        <member name="P:HaroldDawson.MarsRover.Core.Models.NasaMarsRover.CurrentHeading">
+            <summary>
+            The direction the rover is currently facing
+            </summary>
+        </member>
+        <member name="M:HaroldDawson.MarsRover.Core.Models.NasaMarsRover.TurnRoverLeft">
+            <summary>
+            Turns the rover left by 90 degrees, without changing its coordinates. For example, if the rover is facing North, this method will cause it to face West.
+            </summary>
+        </member>
+        <member name="M:HaroldDawson.MarsRover.Core.Models.NasaMarsRover.TurnRoverRight">
+            <summary>
+            Turns the rover right by 90 degrees, without changing its coordinates. For example, if the rover is facing North, this method will cause it to face East.
+            </summary>
+        </member>
+        <member name="M:HaroldDawson.MarsRover.Core.Models.NasaMarsRover.GetForwardCoordinate">
+            <summary>
+            This returns the coordinate that is directly in front of the rover. For example, if the rover is at (1, 1), and the rover is facing north, it will return a coordinate of (1, 2).
+            This method does NOT move the rover.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:HaroldDawson.MarsRover.Core.Models.NasaMarsRover.MoveRoverForward">
+            <summary>
+            This method moves the rover to the coordinate directy in front of it.
+            There is no safety to prevent the rover from moving beyond the bounds of the plateau,
+            so that check is the responsibility of the caller.
+            </summary>
+        </member>
+        <member name="T:HaroldDawson.MarsRover.Core.Models.MarsCoordinate">
+            <summary>
+            Represents on point on the Mars Plateau.
+            </summary>
+        </member>
+        <member name="P:HaroldDawson.MarsRover.Core.Models.MarsCoordinate.X">
+            <summary>
+            The horizontal coordinate
+            </summary>
+        </member>
+        <member name="P:HaroldDawson.MarsRover.Core.Models.MarsCoordinate.Y">
+            <summary>
+            The vertical coordinate
+            </summary>
+        </member>
+        <member name="T:HaroldDawson.MarsRover.Core.Services.InputParseService">
+            <summary>
+            This service takes the collected input and converts it into classes (or enums)
+            These methods returning a generic InputParseResult, which contains a boolean to indicate success/fail
+            a property to hold the results if parsed successfully,
+            and a property to hold the parsing exception, if one was thrown and parsing failed.
+            </summary>
+        </member>
+        <member name="M:HaroldDawson.MarsRover.Core.Services.InputParseService.ParsePlateauDimensions(System.String)">
+            <summary>
+            Takes the user input string and attempts to parse it into a <see cref="T:HaroldDawson.MarsRover.Core.Models.MarsCoordinate"/>.
+            </summary>
+            <param name="userInput"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HaroldDawson.MarsRover.Core.Services.InputParseService.ParseUserInputToCreateRover(System.String)">
+            <summary>
+            Takes the user input string and attempts to parse it into a <see cref="T:HaroldDawson.MarsRover.Core.Models.NasaMarsRover"/>.
+            </summary>
+            <param name="userInput"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HaroldDawson.MarsRover.Core.Services.InputParseService.ParseRoverInstructionsFromUserInput(System.String)">
+            <summary>
+            Takes the user input string and attempts to parse it into a <see cref="T:System.Collections.Generic.List`1"/>.
+            </summary>
+            <param name="userInput"></param>
+            <returns></returns>
+        </member>
+        <member name="T:HaroldDawson.MarsRover.Core.Services.MarsPlateauNavigationService">
+            <summary>
+            The navigation service is the intelligence behind moving the rover around the plateau.
+            This service is responsible for constructing the correct size plateau
+            and ensuring the rover stays within the bounds of the plateau.
+            It also is how a program should provide instructions to the rover.
+            </summary>
+        </member>
+        <member name="P:HaroldDawson.MarsRover.Core.Services.MarsPlateauNavigationService.RoverCount">
+            <summary>
+            Gets the number of rovers currently on the plateau.
+            </summary>
+        </member>
+        <member name="M:HaroldDawson.MarsRover.Core.Services.MarsPlateauNavigationService.CreatePlateau(HaroldDawson.MarsRover.Core.Models.MarsCoordinate)">
+            <summary>
+            This method creates the rectangular plateau based on the coordinate provided.
+            The corner provided is expected to be the northeast corner of the plateau.
+            </summary>
+            <param name="northEastCornerCoordinate"></param>
+            <exception cref="T:System.ArgumentOutOfRangeException">Thrown if X or Y coordinate provided is less than 0.</exception>
+        </member>
+        <member name="M:HaroldDawson.MarsRover.Core.Services.MarsPlateauNavigationService.AddRover(HaroldDawson.MarsRover.Core.Models.NasaMarsRover)">
+            <summary>
+            Allows a rover to be placed on the Plateau at the rover's CurrentLocation.
+            </summary>
+            <param name="rover"></param>
+            <exception cref="T:HaroldDawson.MarsRover.Core.Exceptions.MarsPlateauOutOfBoundsException">Thrown if the rover has a CurrentLocation value outside of the bounds of the Plateau.</exception>
+        </member>
+        <member name="M:HaroldDawson.MarsRover.Core.Services.MarsPlateauNavigationService.GiveCurrentRoverInstructions(System.Collections.Generic.IEnumerable{HaroldDawson.MarsRover.Core.Enums.RoverInstructionEnum},System.Action{System.String})">
+            <summary>
+            Allows the caller to pass an <see cref="T:System.Collections.Generic.IEnumerable`1"/> of instructions to the current rover.
+            Also, an action can be passed by the caller if the result of each action is desired.
+            </summary>
+            <param name="instructions">IEnumerable of instructions for the current rover</param>
+            <param name="actionResultReport">The action to be executed after each action that reports the result of that action. If null, results are not reported.</param>
+        </member>
+        <member name="M:HaroldDawson.MarsRover.Core.Services.MarsPlateauNavigationService.GiveCurrentRoverInstruction(HaroldDawson.MarsRover.Core.Enums.RoverInstructionEnum,System.Action{System.String})">
+            <summary>
+            Allows the caller to pass one <see cref="T:HaroldDawson.MarsRover.Core.Enums.RoverInstructionEnum"/> to the current rover.
+            Also, an action can be passed by the caller if the result of each action is desired.
+            </summary>
+            <param name="instruction">One instruction for the current rover</param>
+            <param name="actionResultReport">The action to be executed after the action that reports the result of that action. If null, results are not reported.</param>
+        </member>
+        <member name="M:HaroldDawson.MarsRover.Core.Services.MarsPlateauNavigationService.GetRoverLocations">
+            <summary>
+            Returns an <see cref="!:IEnumerable&lt;string&gt;"/> to the caller that gives the current location of each rover in the format of "X Y Z"
+            Where X and Y are the coordinates and Z is the cardinal heading
+            If there are no rovers, then an empty Enumerable is returned.
+            </summary>
+            <returns></returns>
+        </member>
+    </members>
+</doc>
